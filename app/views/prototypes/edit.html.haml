@@ -25,7 +25,7 @@
                   = f.fields_for :captured_images do |image|
                     %img
                     = image.file_field :content
-                    = image.hidden_field :status, value: "sub"ss
+                    = image.hidden_field :status, value: "sub"
       .row.proto-description
         - logger.debug "log/development.logにログが出力されています。"
         .col-md-12
