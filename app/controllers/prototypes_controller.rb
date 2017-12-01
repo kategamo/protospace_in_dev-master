@@ -20,6 +20,27 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    set_prototype
+  end
+
+  def destroy
+    prototype = Prototype.find(params[:id])
+    if prototype.user_id = current_user.id
+      prototype.destroy
+    end
+  end
+
+  def edit
+    set_prototype
+    @capimg = @prototype.captured_images
+  end
+
+  def update
+    prototype = Prototype.find(params[:id])
+    if prototype.user_id = current_user.id
+      prototype.update(prototype_params)
+      redirect_to ({ action: :show }), notice: 'Prototypes was successfully edited'
+    end
   end
 
   private

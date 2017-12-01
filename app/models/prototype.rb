@@ -17,6 +17,12 @@ class Prototype < ActiveRecord::Base
     captured_images.main.first.content
   end
 
+  def set_sub_thumbnail
+    captured_images.sub.first.content
+    captured_images.sub.second.content
+    captured_images.sub.third.content
+  end
+
   def posted_date
     created_at.strftime('%b %d %a')
   end

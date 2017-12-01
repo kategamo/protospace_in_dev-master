@@ -37,3 +37,9 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
+      %ul.more_list
+      - if user_signed_in? && current_user.id == @prototype.user.id
+        %li
+          = link_to '編集',"/prototypes/#{@prototype.id}/edit",method: :get
+        %li
+          = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete
