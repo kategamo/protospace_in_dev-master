@@ -68,3 +68,12 @@ belongs_to :user, :prototype
 - user_id
 - prototype_id
 
+|Column|Type|Option|
+|user_id|integer|null: false, foreign_key: true|
+|prototype_id|integer|null: false, foreign_key: true|
+|content|text|null: false|
+|timestamp|integer|null:faulse|
+
+#Association
+belongs_to :user, :prototype
+
