@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+  before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
     @prototypes = Prototype.all
@@ -21,6 +21,7 @@ class PrototypesController < ApplicationController
 
   def show
     set_prototype
+    @comment =@prototype.comments.includes(:user)
   end
 
   def destroy
@@ -31,8 +32,13 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    set_prototype
     @capimg = @prototype.captured_images
+    @capimg.each do |capimg|
+     if capimg[:status]==0
+      @main_thumb = capimg #capimgが配列に渡る
+      end
+    end
+ @sub_thumb = @prototype.set_sub_thumbnail
   end
 
   def update
@@ -55,7 +61,7 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:content, :status, :id]
     )
   end
 end
