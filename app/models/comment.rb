@@ -1,4 +1,4 @@
 class Comment < ActiveRecord::Base
-  belongs_to :Prototype
-  belongs_to :User
+  belongs_to :prototype
+  belongs_to :user
 end
