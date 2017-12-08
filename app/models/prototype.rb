@@ -1,6 +1,7 @@
 class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :captured_images, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
@@ -18,9 +19,13 @@ class Prototype < ActiveRecord::Base
   end
 
   def set_sub_thumbnail
-    captured_images.sub.first.content
-    captured_images.sub.second.content
-    captured_images.sub.third.content
+    sub_thumbs = captured_images.sub
+    i = 0
+    while i < 3
+      sub_thumbs[i]||= captured_images.new(status: 1)
+      i = i +1
+    end
+    return sub_thumbs
   end
 
   def posted_date
