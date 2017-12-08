@@ -15,6 +15,7 @@
 ActiveRecord::Schema.define(version: 20171205050117) do
 ActiveRecord::Schema.define(version: 20171204014105) do
 
+
   create_table "captured_images", force: :cascade do |t|
     t.string  "content",      limit: 255
     t.integer "status",       limit: 4
