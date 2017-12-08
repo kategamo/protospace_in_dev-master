@@ -37,25 +37,10 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
-      %ul.more_list
-      - if user_signed_in? && current_user.id == @prototype.user.id
-        %li
-          = link_to '編集',"/prototypes/#{@prototype.id}/edit",method: :get
-        %li
-          = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete
+  Comments Edit
   .container
-    = form_tag("/prototypes/#{@prototype.id}/comments", method: :post) do
-      %textarea{cols:"30", name: "content", placeholder:"コメントする", rows: "2"}
-      %input{type: "submit", value: "SENT"}
-  .comments
-    %h4
-      Comments Index
-      %Comments
-        - if @comments
-          - @comments.each do |comment|
-            %p
-            %strong= link_to comment.user.name, "/users/#{comment.user_id}"
-            = comment.content
-            - if user_signed_in? && current_user.id == comment.user.id
-              = link_to '編集',"/prototypes/#{@prototype.id}/comments/#{comment.id}/edit",method: :get
-              = link_to '削除',"/prototypes/#{@prototype.id}/comments/#{comment.id}",method: :delete
+    -if current_user
+      = form_tag("/prototypes/#{@prototype.id}/comments/#{@comment.id}", method: :patch) do
+        %h3 編集する
+        %textarea{cols:"30", name: "content", placeholder:"コメントを編集する", rows: "2"} #{@comment.content}
+        %input{type: "submit", value: "SENT"}
