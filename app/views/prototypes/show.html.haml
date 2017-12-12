@@ -13,6 +13,12 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
+    .col-md-3
+      - if user_signed_in? && current_user.id == @prototype.user.id
+        %ui
+          = link_to '編集',"/prototypes/#{@prototype.id}/edit",method: :get, class: "btn btn-default"
+        %ui
+          = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete, class: "btn btn-default"
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -37,19 +43,13 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
-      %ul.more_list
-      - if user_signed_in? && current_user.id == @prototype.user.id
-        %li
-          = link_to '編集',"/prototypes/#{@prototype.id}/edit",method: :get
-        %li
-          = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete
   .container
     = form_tag("/prototypes/#{@prototype.id}/comments", method: :post) do
-      %textarea{cols:"30", name: "content", placeholder:"コメントする", rows: "2"}
-      %input{type: "submit", value: "SENT"}
-  .comments
+      %textarea{cols:"60", name: "content", placeholder:"コメントする", rows: "2" ,class: "commentform"}
+      %input{type: "submit", value: "SENT",class: "btn btn-default commentform__sentbtn"}
+  .col-md-3
     %h4
-      Comments Index
+      コメント一覧
       %Comments
         - if @comments
           - @comments.each do |comment|
