@@ -51,8 +51,6 @@ class PrototypesController < ApplicationController
 
   def set_prototype
     @prototype = Prototype.find(params[:id])
-    @comment = Comment.find(params[:id])
-
   end
 
   def prototype_params

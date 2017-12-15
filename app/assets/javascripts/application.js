@@ -10,9 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.purr
-//= require best_in_place
-//= require rest_in_place
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
