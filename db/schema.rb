@@ -24,13 +24,10 @@ ActiveRecord::Schema.define(version: 20171214003503) do
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.integer  "prototype_id", limit: 4
-    t.text     "content",      limit: 65535, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.text     "content",      limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "comments", ["prototype_id"], name: "fk_rails_5a7b40847a", using: :btree
-  add_index "comments", ["user_id"], name: "fk_rails_03de2dc08c", using: :btree
 
   create_table "prototype_tags", force: :cascade do |t|
     t.integer  "prototype_id", limit: 4
@@ -83,8 +80,6 @@ ActiveRecord::Schema.define(version: 20171214003503) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "captured_images", "prototypes"
-  add_foreign_key "comments", "prototypes"
-  add_foreign_key "comments", "users"
   add_foreign_key "prototype_tags", "prototypes"
   add_foreign_key "prototype_tags", "tags"
   add_foreign_key "prototypes", "users"

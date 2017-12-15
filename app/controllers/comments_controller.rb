@@ -15,8 +15,10 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment = find_comment
-    comment.update(content: comment_params[:content], prototype_id: comment_params[:prototype_id], user_id: current_user.id) if current_user.id == comment.user_id
+    comment = Comment.find(params[:id])
+    if comment.user_id == current_user.id
+      comment.destroy
+    end
     redirect_to prototype_path(params[:prototype_id])
   end
 
@@ -26,7 +28,6 @@ class CommentsController < ApplicationController
       comment.destroy
     end
     @prototype = Prototype.find(params[:prototype_id])
-    render
   end
 
   private
@@ -35,7 +36,7 @@ class CommentsController < ApplicationController
   end
 
   def find_comment
-    Comment.find(params[:prototype_id])
+    Prototype.find(params[:prototype_id])
   end
 
 end
