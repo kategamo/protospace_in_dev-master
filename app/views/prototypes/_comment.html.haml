@@ -1,5 +1,6 @@
 %h5
-  = comment.user.name
+  =link_to "/users/#{comment.user.id}" do
+    = comment.user.name
 %p
   = comment.content
 - if user_signed_in? && comment.user_id == current_user.id
