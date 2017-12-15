@@ -2,8 +2,12 @@ class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :captured_images, dependent: :destroy
   has_many :comments, dependent: :destroy
-
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
+
+  has_many :prototype_tags, foreign_key: 'prototype_id' ,dependent: :destroy
+  has_many :tags, through: :prototype_tags
+  accepts_nested_attributes_for :tags
+
 
   validates :title,
             :catch_copy,
@@ -13,6 +17,8 @@ class Prototype < ActiveRecord::Base
   def reject_sub_images(attributed)
     attributed['content'].blank?
   end
+
+
 
   def set_main_thumbnail
     captured_images.main.first.content
@@ -27,6 +33,17 @@ class Prototype < ActiveRecord::Base
     end
     return sub_thumbs
   end
+
+  def set_tag_list
+    tag_list = tags
+    i = 0
+    while i < 3
+      tag_list[i]||= tags.new
+      i = i +1
+    end
+    return tag_list
+  end
+
 
   def posted_date
     created_at.strftime('%b %d %a')

@@ -1,0 +1,9 @@
+.tag-index
+  - @tags.each do |tag|
+    = link_to "/tags/#{tag.id}" do
+      .tag-index__tagbox
+        .tag-index__tagbox__tagname
+          = tag.name
+        .tag-index__tagbox__prototypecounter
+          = tagcount = Tag.where(name: tag.name).count
+          Prototypes

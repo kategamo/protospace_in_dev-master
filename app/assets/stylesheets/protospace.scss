@@ -654,6 +654,58 @@ body {
   font-weight: 200;
 }
 
+.tag-index{
+  margin: 50px 50px 50px 50px;
+  height: 60px;
+  width:  250px;
+  &__tagbox{
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid;
+    border-color: #dddddd;
+    margin: 20px 0 0 20px;
+    &__tagname{
+      color: #b6b6b6;
+      background-color: #eeeeee;
+      font-size: 20px;
+      padding: 10px 50px 10px 50px;
+    }
+    &__prototypecounter{
+      color: #ffffff;
+      background-color: #777777;
+      font-size: 12px;
+      font-weight: bold;
+      font-style: oblique;
+    }
+  }
+}
+
+
+.tag-show{
+  margin: 50px 50px 50px 50px;
+  height: 60px;
+  width:  calc( 100% - 100px);
+  &__tagbox{
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid;
+    border-color: #dddddd;
+    margin: 20px 0 0 20px;
+    &__tagname{
+      color: #b6b6b6;
+      background-color: #eeeeee;
+      font-size: 30px;
+      padding: 10px 50px 10px 50px;
+    }
+    &__prototypecounter{
+      color: #ffffff;
+      background-color: #777777;
+      font-size: 12px;
+      font-weight: bold;
+      font-style: oblique;
+    }
+  }
+}
 
 /* -- flash messages ------------------------------------ */
 .alert {
