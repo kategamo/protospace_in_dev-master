@@ -9,10 +9,3 @@
           = link_to prototype.user.name, user_path(prototype.user)
         .proto-posted
           = prototype.posted_date
-
-      %ul.more_list
-      - if user_signed_in? && current_user.id == prototype.user.id
-        %ui
-          = link_to '編集',"/prototypes/#{prototype.id}/edit",method: :get ,class: " btn btn-default"
-        %ui
-          = link_to '削除',"/prototypes/#{prototype.id}",method: :delete, class: " btn btn-default"

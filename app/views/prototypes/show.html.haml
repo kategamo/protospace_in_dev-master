@@ -1,24 +1,4 @@
 .container.proto-page
-  %header.row.user-nav
-    .col-md-6
-      .media
-        .media-left
-          = link_to user_path(@prototype.user) do
-            = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
-        .media-body
-          %h4#top-aligned-media.media-heading
-            = @prototype.title
-          .proto-user
-            by
-            = link_to "#{@prototype.user.name}", user_path(@prototype.user)
-            .degree
-              = @prototype.user.position
-    .col-md-3
-      - if user_signed_in? && current_user.id == @prototype.user.id
-        %ui
-          = link_to '編集',"/prototypes/#{@prototype.id}/edit",method: :get, class: "btn btn-default"
-        %ui
-          = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete, class: "btn btn-default"
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -43,19 +23,16 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
-  .container
-    = form_tag("/prototypes/#{@prototype.id}/comments", method: :post) do
-      %textarea{cols:"60", name: "content", placeholder:"コメントする", rows: "2" ,class: "commentform"}
-      %input{type: "submit", value: "SENT",class: "btn btn-default commentform__sentbtn"}
-  .col-md-3
-    %h4
-      コメント一覧
-      %Comments
-        - if @comments
-          - @comments.each do |comment|
-            %p
-            %strong= link_to comment.user.name, "/users/#{comment.user_id}"
-            = comment.content
-            - if user_signed_in? && current_user.id == comment.user.id
-              = link_to '編集',"/prototypes/#{@prototype.id}/comments/#{comment.id}/edit",method: :get
-              = link_to '削除',"/prototypes/#{@prototype.id}/comments/#{comment.id}",method: :delete
+  .row
+    .col-md-6
+      %h4
+        #comment-header
+          Comments(#{@prototype.comments.length})
+      #comments
+        = render partial: "prototypes/comment", collection: @prototype.comments
+  .row
+    .col-md-6
+    %h4 Write a comment
+    = form_tag("/prototypes/#{@prototype.id}/comments", method: :post, remote: true) do
+      = text_field_tag :content, "", id: "commentForm"
+      = submit_tag "COMMENT"
