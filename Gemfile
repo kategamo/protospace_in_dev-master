@@ -31,3 +31,5 @@ group :production do
 end
 
 gem 'kaminari'
+gem 'rest_in_place'
+gem 'best_in_place'
