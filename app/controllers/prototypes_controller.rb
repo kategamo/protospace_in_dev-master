@@ -8,6 +8,7 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
+    @prototype.tags.build
   end
 
   def create
@@ -22,6 +23,7 @@ class PrototypesController < ApplicationController
   def show
     set_prototype
     @comments =@prototype.comments.includes(:user)
+    @tags = @prototype.tags
   end
 
   def destroy
@@ -38,7 +40,8 @@ class PrototypesController < ApplicationController
       @main_thumb = capimg #capimgが配列に渡る
       end
     end
- @sub_thumb = @prototype.set_sub_thumbnail
+    @sub_thumb = @prototype.set_sub_thumbnail
+    @tag_list = @prototype.set_tag_list
   end
 
   def update
@@ -61,7 +64,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status, :id]
+      captured_images_attributes: [:content, :status, :id],
+      tags_attributes: [:id ,:name]
     )
   end
 end

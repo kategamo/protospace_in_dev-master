@@ -39,10 +39,9 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        - @tags.each do |tag|
+          %li
+            %a{href: "/tags/#{tag.id}", class: "btn btn-default"} #{tag.name}
   .container
     = form_tag("/prototypes/#{@prototype.id}/comments", method: :post) do
       %textarea{cols:"60", name: "content", placeholder:"コメントする", rows: "2" ,class: "commentform"}

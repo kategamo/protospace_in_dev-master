@@ -12,10 +12,14 @@
           = link_to "Newest", "#"
       = link_to "VIEW TAGS", "/tags", class: "btn btn-default col-lg-1"
 
+.tag-show
+  .tag-show__tagbox
+    .tag-show__tagbox__tagname
+      =link_to @tag.name, "/tags/#{@tag.id}"
+    .tag-show__tagbox__prototypecounter
+      = tagcount = Tag.where(name: @tag.name).count
+      Prototypes
+
 .container.proto-list
   .row
     = render partial: 'prototypes/prototype', collection: @prototypes
-
-.text-center
-  %ul.pagination
-    =paginate @prototypes
