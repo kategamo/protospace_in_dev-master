@@ -15,9 +15,11 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment = find_comment
-    comment.update(content: comment_params[:content], prototype_id: comment_params[:prototype_id], user_id: current_user.id) if current_user.id == comment.user_id
-    redirect_to prototype_path(params[:prototype_id])
+    @comment = Comment.find(params[:id])
+    if @comment.user_id == current_user.id
+      @comment.update(comment_params)
+    end
+    redirect_to prototype_path(@comment.prototype.id), notice: 'Your commen was succesfully edited'
   end
 
   def destroy
@@ -26,16 +28,15 @@ class CommentsController < ApplicationController
       comment.destroy
     end
     @prototype = Prototype.find(params[:prototype_id])
-    render
   end
 
   private
   def comment_params
-    params.permit(:prototype_id,:content)
+    params.permit(:id, :prototype_id,:content)
   end
 
   def find_comment
-    Comment.find(params[:prototype_id])
+    @comment = Prototype.find(params[:prototype_id])
   end
 
 end
