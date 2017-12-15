@@ -124,6 +124,14 @@ body {
   }
 }
 
+.commentform{
+  float: left;
+  &__sentbtn{
+    height: 45px;
+    margin-left: 30px;
+  }
+}
+
 
 /*-- Button groups --------------------------------- */
 .btn-group .btn {
@@ -668,5 +676,10 @@ body {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
+}
+
+/* --Footer Design -------------------------------------- */
+footer{
+  text-align: center;
 }
 

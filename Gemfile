@@ -31,5 +31,5 @@ group :production do
 end
 
 gem 'kaminari'
-gem 'rest_in_place'
-gem 'best_in_place'
+
+gem 'kaminari-bootstrap', '~> 3.0.1'
