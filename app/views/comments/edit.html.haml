@@ -1,18 +1,5 @@
+Comments Edit
 .container.proto-page
-  %header.row.user-nav
-    .col-md-6
-      .media
-        .media-left
-          = link_to user_path(@prototype.user) do
-            = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
-        .media-body
-          %h4#top-aligned-media.media-heading
-            = @prototype.title
-          .proto-user
-            by
-            = link_to "#{@prototype.user.name}", user_path(@prototype.user)
-            .degree
-              = @prototype.user.position
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -37,10 +24,9 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
-  Comments Edit
-  .container
-    -if current_user
-      = form_tag("/prototypes/#{@prototype.id}/comments/#{@comment.id}", method: :patch) do
-        %h3 編集する
-        %textarea{cols:"30", name: "content", placeholder:"コメントを編集する", rows: "2"} #{@comment.content}
-        %input{type: "submit", value: "SENT"}
+.container
+  -if current_user
+    = form_tag("/prototypes/#{@prototype.id}/comments/#{@comment.id}", method: :patch) do
+      %h3 編集する
+      %textarea{cols:"30", name: "content", placeholder:"コメントを編集する", rows: "2"} #{@comment.content}
+      %input{type: "submit", value: "SENT"}
