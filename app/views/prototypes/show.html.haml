@@ -1,4 +1,19 @@
 .container.proto-page
+  %header.row.user-nav
+    .col-md-6
+      .media
+        .media-left
+          = link_to user_path(@prototype.user) do
+            = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
+        .media-body
+          %h4#top-aligned-media.media-heading
+            = @prototype.title
+          .proto-user
+            by
+            = link_to "#{@prototype.user.name}", user_path(@prototype.user)
+            .degree
+              = @prototype.user.position
+    = render 'likes/likelinks', prototype: @prototype
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -7,6 +22,7 @@
         - @prototype.captured_images.sub.each do |image|
           %li.list-group-item
             = image_tag(image.content, class: 'img-responsive')
+    = render 'likes/likelinks', prototype: @prototype
   .row.proto-description
     .col-md-3
       %h4 Catch Copy

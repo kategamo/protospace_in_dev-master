@@ -24,6 +24,7 @@ class PrototypesController < ApplicationController
     set_prototype
     @comments =@prototype.comments.includes(:user)
     @tags = @prototype.tags
+    @likes = Like.where(prototype_id: params[:id])
   end
 
   def destroy
