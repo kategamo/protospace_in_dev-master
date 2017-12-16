@@ -32,7 +32,6 @@
         - @prototype.captured_images.sub.each do |image|
           %li.list-group-item
             = image_tag(image.content, class: 'img-responsive')
-    = render 'likes/likelinks', prototype: @prototype
   .row.proto-description
     .col-md-3
       %h4 Catch Copy
