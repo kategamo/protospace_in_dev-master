@@ -13,6 +13,8 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
+
+    = render 'likes/likelinks', prototype: @prototype
     .col-md-6
       - if user_signed_in? && current_user.id == @prototype.user.id
         .ul.more_list.btn.btn-default
@@ -21,6 +23,7 @@
         .ul.more_list.btn.btn-default
           %ui
             = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete
+
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -29,6 +32,7 @@
         - @prototype.captured_images.sub.each do |image|
           %li.list-group-item
             = image_tag(image.content, class: 'img-responsive')
+    = render 'likes/likelinks', prototype: @prototype
   .row.proto-description
     .col-md-3
       %h4 Catch Copy

@@ -157,6 +157,16 @@ body {
   z-index: 2;
 }
 
+.likelink {
+  height: 100%;
+  background-color: white;
+  float: right;
+  .btn-default:before {
+    height: 55px;
+    line-height: 55px;
+    padding-left: 20px;
+  }
+}
 
 
 /* -- Ripple effect -------------------------------- */
@@ -437,6 +447,10 @@ body {
       opacity: 0;
       filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
       cursor: pointer;
+    }
+
+    .main {
+      margin: auto;
     }
   }
 

@@ -12,9 +12,9 @@
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
             = f.fields_for :captured_images do |image|
-              %img.main-jk
+              %img.main{alt: "", src: "#", style: "position: relative; height: 100%; margin auto;" }
               = image_tag(image.object.content.large)
-              = image.file_field :content, required: true
+              = image.file_field :content, required: true, id: "main-upload"
               = image.hidden_field :status, value: "main"
         .col-md-12
           %h4 Sub Thumbnails
@@ -23,20 +23,20 @@
             %li.list-group-item.col-md-4
               .image-upload-1
                 = f.fields_for :captured_images do |image|
-                  %img
-                  = image.file_field :content
+                  %img.sub1{alt: "", height: "100%", width: "100%", src: "#"}
+                  = image.file_field :content, class: "sub-upload-1"
                   = image.hidden_field :status, value: "sub"
             %li.list-group-item.col-md-4
               .image-upload-2
                 = f.fields_for :captured_images do |image|
-                  %img
-                  = image.file_field :content
+                  %img.sub2{alt: "", height: "100%", width: "100%", src: "#"}
+                  = image.file_field :content, class: "sub-upload-2"
                   = image.hidden_field :status, value: "sub"
             %li.list-group-item.col-md-4
               .image-upload-3
                 = f.fields_for :captured_images do |image|
-                  %img
-                  = image.file_field :content
+                  %img.sub3{alt: "", height: "100%", width: "100%", src: "#"}
+                  = image.file_field :content, class: "sub-upload-3"
                   = image.hidden_field :status, value: "sub"
       .row.proto-description
         .col-md-12
