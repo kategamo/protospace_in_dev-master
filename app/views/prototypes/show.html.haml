@@ -13,7 +13,17 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
+
     = render 'likes/likelinks', prototype: @prototype
+    .col-md-6
+      - if user_signed_in? && current_user.id == @prototype.user.id
+        .ul.more_list.btn.btn-default
+          %ui
+            = link_to '編集',"/prototypes/#{@prototype.id}/edit",method: :get, remote: :true
+        .ul.more_list.btn.btn-default
+          %ui
+            = link_to '削除',"/prototypes/#{@prototype.id}",method: :delete
+
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -38,18 +48,6 @@
         - @tags.each do |tag|
           %li
             %a{href: "/tags/#{tag.id}", class: "btn btn-default"} #{tag.name}
-  .col-md-3
-    %h4
-      コメント一覧
-      %Comments
-        - if @comments
-          - @comments.each do |comment|
-            %p
-            %strong= link_to comment.user.name, "/users/#{comment.user_id}"
-            = comment.content
-            - if user_signed_in? && current_user.id == comment.user.id
-              = link_to '編集',"/prototypes/#{@prototype.id}/comments/#{comment.id}/edit",method: :get
-              = link_to '削除',"/prototypes/#{@prototype.id}/comments/#{comment.id}",method: :delete
   .row
     .col-md-6
       %h4
