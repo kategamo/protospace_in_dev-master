@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show, :edit, :update]
   resources :tags, only: [:index, :show, :create, :update, :destroy]
-  post '/like/:tweet_id' => 'likes#like', as: 'like'
-  delete '/like/:tweet_id' => 'likes#unlike', as: 'unlike'
+  post '/like/:prototype_id' => 'likes#like', as: 'like'
+  delete '/like/:prototype_id' => 'likes#unlike', as: 'unlike'
 end
